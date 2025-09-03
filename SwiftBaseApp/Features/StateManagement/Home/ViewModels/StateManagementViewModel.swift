@@ -112,8 +112,7 @@ class StateManagementViewModel: ObservableObject {
                 Text("性能优化技巧 Demo - 待实现")
                     .navigationTitle("性能优化技巧")
             case "Publisher 和 Subscriber":
-                Text("Publisher 和 Subscriber Demo - 待实现")
-                    .navigationTitle("Publisher 和 Subscriber")
+                PublisherSubscriberDemoView()
             case "基本操作符使用":
                 Text("基本操作符使用 Demo - 待实现")
                     .navigationTitle("基本操作符使用")

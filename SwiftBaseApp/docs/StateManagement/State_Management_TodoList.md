@@ -99,11 +99,11 @@
 
 ### 3. Combine 框架
 
-- [ ] Publisher 和 Subscriber （PublisherSubscriber.md 和 PublisherSubscriberDemoView.swift）
-  - [ ] 发布者创建
-  - [ ] 订阅者实现
-  - [ ] 数据流控制
-  - [ ] 生命周期管理
+- [x] Publisher 和 Subscriber （PublisherSubscriber.md 和 PublisherSubscriberDemoView.swift）
+  - [x] 发布者创建
+  - [x] 订阅者实现
+  - [x] 数据流控制
+  - [x] 生命周期管理
 - [ ] 基本操作符使用 （CombineOperators.md 和 CombineOperatorsDemoView.swift）
   - [ ] 转换操作符
   - [ ] 过滤操作符
