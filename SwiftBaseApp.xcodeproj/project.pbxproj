@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		32CB90AC2E680C1C006E825A /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = 32CB90AB2E680C1C006E825A /* Inject */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		32CB79842E680ABF006E825A /* SwiftBaseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBaseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -27,7 +23,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32CB90AC2E680C1C006E825A /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +65,6 @@
 			);
 			name = SwiftBaseApp;
 			packageProductDependencies = (
-				32CB90AB2E680C1C006E825A /* Inject */,
 			);
 			productName = SwiftBaseApp;
 			productReference = 32CB79842E680ABF006E825A /* SwiftBaseApp.app */;
@@ -101,7 +95,8 @@
 			mainGroup = 32CB797B2E680ABF006E825A;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				32CB90AA2E680C1C006E825A /* XCLocalSwiftPackageReference "../iPhoneBaseApp/iPhoneBaseApp/localPackage/Inject-1.5.2" */,
+				32CB91F42E681392006E825A /* XCLocalSwiftPackageReference "SwiftBaseApp/localPackage/Inject-1.5.2" */,
+				32CB91F72E68149E006E825A /* XCRemoteSwiftPackageReference "Inject" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 32CB79852E680ABF006E825A /* Products */;
@@ -352,18 +347,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		32CB90AA2E680C1C006E825A /* XCLocalSwiftPackageReference "../iPhoneBaseApp/iPhoneBaseApp/localPackage/Inject-1.5.2" */ = {
+		32CB91F42E681392006E825A /* XCLocalSwiftPackageReference "SwiftBaseApp/localPackage/Inject-1.5.2" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../iPhoneBaseApp/iPhoneBaseApp/localPackage/Inject-1.5.2";
+			relativePath = "SwiftBaseApp/localPackage/Inject-1.5.2";
 		};
 /* End XCLocalSwiftPackageReference section */
 
-/* Begin XCSwiftPackageProductDependency section */
-		32CB90AB2E680C1C006E825A /* Inject */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Inject;
+/* Begin XCRemoteSwiftPackageReference section */
+		32CB91F72E68149E006E825A /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
 		};
-/* End XCSwiftPackageProductDependency section */
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 32CB797C2E680ABF006E825A /* Project object */;
 }
