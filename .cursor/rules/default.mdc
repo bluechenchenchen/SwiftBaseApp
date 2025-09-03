@@ -1,0 +1,419 @@
+---
+alwaysApply: true
+
+
+# Swift6 iOS 开发学习规则 - 前端开发者专用
+
+## 🎯 学习目标
+
+帮助前端开发者快速掌握 Swift6 和 iOS 开发，建立从 Web 到移动端的知识桥梁。
+
+## 📚 知识映射 - 前端到 iOS 概念对照
+
+### 语言层面
+
+- **JavaScript/TypeScript** → **Swift6**
+  - `let/const` → `let/var`
+  - `function` → `func`
+  - `class` → `class`
+  - `interface` → `protocol`
+  - `async/await` → `async/await`
+  - `Promise` → `async/throws`
+
+### 框架层面
+
+- **React/Vue** → **SwiftUI**
+  - `JSX/Template` → `View`
+  - `useState` → `@State`
+  - `useEffect` → `onAppear/onDisappear`
+  - `props` → `@Binding/@ObservedObject`
+  - `Context` → `@EnvironmentObject`
+  - `Hooks` → `Property Wrappers`
+
+### 架构模式
+
+- **React Context/Redux** → **MVVM + Combine**
+- **Vuex/Pinia** → **@StateObject/@ObservedObject**
+- **React Router** → **NavigationStack/NavigationSplitView**
+
+## 🏗️ 项目架构指导
+
+### 目录结构规范
+
+```
+iPhoneBaseApp/
+├── Features/           # 功能模块（类似前端pages/views）
+│   ├── Home/          # 首页模块
+│   ├── UI/            # UI组件模块
+│   └── [FeatureName]/ # 其他功能模块
+├── Components/         # 共享组件（类似前端components）
+├── Core/              # 核心功能（类似前端utils/services）
+├── Models/            # 数据模型（类似前端types/interfaces）
+└── Assets.xcassets/   # 资源文件（类似前端assets）
+```
+
+### 命名规范
+
+- **文件命名**: 使用 PascalCase，如 `HomeView.swift`
+- **类/结构体**: PascalCase，如 `UserProfile`
+- **函数/变量**: camelCase，如 `fetchUserData`
+- **常量**: camelCase，如 `apiBaseUrl`
+- **枚举**: PascalCase，如 `NetworkError`
+
+### 命名冲突避免
+
+#### 核心原则
+
+1. **避免通用命名**: 不要使用过于通用的名称如 `User`、`Data`、`Manager`、`Service`
+2. **模块化命名**: 使用模块前缀或功能描述来区分相似类型
+3. **具体化命名**: 类型名称应该明确表达其用途和所属模块
+
+#### 命名策略
+
+##### 1. 模块前缀命名法
+```swift
+// ✅ 推荐：使用模块前缀
+struct UserManagementUser {
+    let name: String
+    let email: String
+}
+
+struct AuthUser {
+    let username: String
+    let isAuthenticated: Bool
+}
+
+struct NetworkUser {
+    let id: String
+    let profile: UserProfile
+}
+```
+
+##### 2. 功能描述命名法
+```swift
+// ✅ 推荐：使用功能描述
+struct DemoUser {
+    let name: String
+    let email: String
+}
+
+struct MockUser {
+    let name: String
+    let email: String
+}
+
+struct FormUser {
+    let name: String
+    let email: String
+}
+```
+
+##### 3. 嵌套类型命名法
+```swift
+// ✅ 推荐：在ViewModel中定义嵌套类型
+class UserManagementViewModel: ObservableObject {
+    struct User {
+        let name: String
+        let email: String
+    }
+    
+    @Published var users: [User] = []
+}
+```
+
+##### 4. 命名空间枚举法
+```swift
+// ✅ 推荐：使用枚举作为命名空间
+enum UserModels {
+    struct BasicUser {
+        let name: String
+        let email: String
+    }
+    
+    struct DetailedUser {
+        let id: String
+        let name: String
+        let email: String
+        let avatar: String
+    }
+}
+
+// 使用时
+let user = UserModels.BasicUser(name: "张三", email: "zhang@example.com")
+```
+
+#### 常见冲突场景及解决方案
+
+##### 场景1：多个模块都有用户模型
+```swift
+// ❌ 避免：通用命名
+struct User { }
+
+// ✅ 推荐：具体命名
+struct UserManagementUser { }
+struct AuthUser { }
+struct ProfileUser { }
+```
+
+##### 场景2：演示代码与生产代码
+```swift
+// ❌ 避免：演示代码使用通用命名
+struct User { }
+
+// ✅ 推荐：演示代码使用特定前缀
+struct DemoUser { }
+struct ExampleUser { }
+struct StateObjectDemoUser { }
+```
+
+##### 场景3：测试数据与真实数据
+```swift
+// ❌ 避免：测试数据使用通用命名
+struct User { }
+
+// ✅ 推荐：测试数据使用特定前缀
+struct MockUser { }
+struct TestUser { }
+struct FakeUser { }
+```
+
+#### 命名检查清单
+
+在创建新类型时，请检查：
+
+- [ ] 类型名称是否过于通用？
+- [ ] 是否与项目中其他类型名称冲突？
+- [ ] 名称是否清楚表达了类型的用途？
+- [ ] 是否使用了适当的模块前缀或功能描述？
+- [ ] 是否考虑了未来可能的扩展？
+
+#### 重构建议
+
+当发现命名冲突时：
+
+1. **立即重命名**: 使用更具体的名称
+2. **批量更新**: 使用Xcode的重构工具批量更新所有引用
+3. **文档更新**: 更新相关文档和注释
+4. **团队沟通**: 与团队成员分享新的命名约定
+
+## 🎨 SwiftUI 开发规范
+
+### 视图结构
+
+```swift
+struct HomeView: View {
+    // MARK: - Properties
+    @StateObject private var viewModel = HomeViewModel()
+
+    // MARK: - Body
+    var body: some View {
+        NavigationStack {
+            VStack {
+                // 视图内容
+            }
+            .navigationTitle("首页")
+        }
+    }
+}
+
+// MARK: - Preview
+#Preview {
+    HomeView()
+}
+```
+
+### 状态管理
+
+- **@State**: 视图内部状态（类似 React useState）
+- **@Binding**: 子视图状态绑定（类似 React props）
+- **@StateObject**: 视图模型（类似 React useReducer）
+- **@ObservedObject**: 观察外部对象（类似 React useContext）
+- **@EnvironmentObject**: 全局状态（类似 React Context）
+
+### 布局原则
+
+- **VStack**: 垂直布局（类似 CSS flex-direction: column）
+- **HStack**: 水平布局（类似 CSS flex-direction: row）
+- **ZStack**: 层叠布局（类似 CSS position: absolute）
+- **LazyVStack/LazyHStack**: 懒加载布局（类似虚拟滚动）
+
+## 🔧 开发工具和最佳实践
+
+### 代码组织
+
+1. **使用 MARK 注释**组织代码结构
+2. **遵循单一职责原则**，每个文件只负责一个功能
+3. **使用扩展(Extension)**分离协议实现
+4. **优先使用结构体(Struct)**而非类(Class)
+
+### 错误处理
+
+```swift
+// 使用Result类型处理异步操作
+func fetchData() async -> Result<[User], NetworkError> {
+    do {
+        let users = try await apiService.fetchUsers()
+        return .success(users)
+    } catch {
+        return .failure(.networkError(error))
+    }
+}
+```
+
+### 网络请求
+
+- 使用**URLSession**进行网络请求
+- 采用**async/await**模式
+- 实现**错误处理**和**重试机制**
+- 使用**Combine**进行响应式编程
+
+## 📱 iOS 特有概念
+
+### 生命周期
+
+- **App 生命周期**: 前台、后台、终止
+- **View 生命周期**: 出现、消失、更新
+- **Scene 生命周期**: 多窗口支持
+
+### 平台特性
+
+- **Core Data**: 本地数据持久化
+- **UserDefaults**: 简单数据存储
+- **Keychain**: 安全数据存储
+- **Core Location**: 位置服务
+- **Push Notifications**: 推送通知
+
+## 🧪 测试策略
+
+### 单元测试
+
+- 测试 ViewModel 业务逻辑
+- 测试数据模型
+- 测试网络层
+
+### UI 测试
+
+- 测试用户交互流程
+- 测试界面响应
+- 测试无障碍功能
+
+## 📖 学习路径建议
+
+### 第一阶段：基础语法
+
+1. Swift6 基础语法
+2. 面向对象编程
+3. 函数式编程
+4. 错误处理
+
+### 第二阶段：SwiftUI 框架
+
+1. 视图基础
+2. 状态管理
+3. 导航系统
+4. 动画效果
+
+### 第三阶段：iOS 平台
+
+1. 生命周期管理
+2. 数据持久化
+3. 网络编程
+4. 平台 API 集成
+
+### 第四阶段：高级特性
+
+1. 性能优化
+2. 内存管理
+3. 并发编程
+4. 架构设计
+
+## 🚀 开发流程
+
+### 1. 需求分析
+
+- 明确功能需求
+- 设计用户界面
+- 规划数据流
+
+### 2. 架构设计
+
+- 选择合适的设计模式
+- 规划模块结构
+- 设计数据模型
+
+### 3. 实现开发
+
+- 创建视图组件
+- 实现业务逻辑
+- 集成平台服务
+
+### 4. 测试验证
+
+- 单元测试
+- 集成测试
+- 用户测试
+
+### 5. 优化发布
+
+- 性能优化
+- 代码审查
+- 应用发布
+
+## 💡 常见问题解决
+
+### 性能优化
+
+- 使用**LazyVStack**处理大量数据
+- 避免在 body 中创建复杂计算
+- 合理使用**@State**和**@StateObject**
+
+### 内存管理
+
+- 避免循环引用
+- 及时释放资源
+- 使用**weak**和**unowned**
+
+### 调试技巧
+
+- 使用**print**和**debugPrint**
+- 利用**Xcode 调试器**
+- 查看**内存图**和**性能分析**
+
+## 📚 推荐资源
+
+### 官方文档
+
+- [Swift 官方文档](https://docs.swift.org/swift-book/)
+- [SwiftUI 官方文档](https://developer.apple.com/documentation/swiftui/)
+- [iOS 开发指南](https://developer.apple.com/develop/)
+
+### 学习资源
+
+- WWDC 视频
+- Apple 开发者论坛
+- Swift 社区博客
+
+## 🎯 学习目标检查清单
+
+### 基础掌握
+
+- [ ] Swift6 语法基础
+- [ ] SwiftUI 视图系统
+- [ ] 状态管理机制
+- [ ] 导航系统
+
+### 进阶技能
+
+- [ ] 网络编程
+- [ ] 数据持久化
+- [ ] 性能优化
+- [ ] 测试驱动开发
+
+### 高级特性
+
+- [ ] 并发编程
+- [ ] 架构设计
+- [ ] 平台集成
+- [ ] 应用发布
+
+---
