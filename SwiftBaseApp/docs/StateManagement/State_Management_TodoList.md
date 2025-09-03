@@ -1,7 +1,7 @@
 <!--
  * @Author: blue
  * @Date: 2025-08-26 09:23:32
- * @FilePath: /iPhoneBaseApp/docs/StateManagement/State_Management_TodoList.md
+ * @FilePath: /SwiftBaseApp/SwiftBaseApp/docs/StateManagement/State_Management_TodoList.md
 -->
 
 # SwiftUI 数据流和状态管理学习清单
@@ -91,49 +91,11 @@
   - [x] 自动更新
   - [x] 自定义发布者
   - [x] 性能优化
-- [ ] 自定义属性包装器 （CustomPropertyWrapper.md 和 CustomPropertyWrapperDemoView.swift）
-  - [ ] 包装器创建
-  - [ ] 属性访问控制
-  - [ ] 验证和转换
-  - [ ] 实际应用案例
-
-### 2. SwiftUI 状态管理
-
-- [ ] 视图内状态管理 （ViewStateManagement.md 和 ViewStateManagementDemoView.swift）
-  - [ ] 本地状态设计
-  - [ ] 状态更新策略
-  - [ ] 状态持久化
-  - [ ] 状态恢复
-- [ ] 父子视图数据传递 （ParentChildDataFlow.md 和 ParentChildDataFlowDemoView.swift）
-  - [ ] 数据流设计
-  - [ ] 状态提升
-  - [ ] 回调函数
-  - [ ] 数据验证
-- [ ] 视图间状态共享 （ViewStateSharing.md 和 ViewStateSharingDemoView.swift）
-  - [ ] 共享状态设计
-  - [ ] 状态同步
-  - [ ] 冲突解决
-  - [ ] 性能优化
-- [ ] 环境值的使用 （EnvironmentValues.md 和 EnvironmentValuesDemoView.swift）
-  - [ ] 环境值定义
-  - [ ] 环境值传递
-  - [ ] 环境值覆盖
-  - [ ] 自定义环境值
-- [ ] 状态恢复和持久化 （StatePersistence.md 和 StatePersistenceDemoView.swift）
-  - [ ] 状态序列化
-  - [ ] 状态恢复机制
-  - [ ] 错误处理
-  - [ ] 版本兼容
-- [ ] 状态管理最佳实践 （StateManagementBestPractices.md 和 StateManagementBestPracticesDemoView.swift）
-  - [ ] 状态设计原则
-  - [ ] 状态分离策略
-  - [ ] 状态更新优化
-  - [ ] 代码组织
-- [ ] 性能优化技巧 （StatePerformanceOptimization.md 和 StatePerformanceOptimizationDemoView.swift）
-  - [ ] 状态更新优化
-  - [ ] 内存管理
-  - [ ] 渲染优化
-  - [ ] 调试技巧
+- [x] 自定义属性包装器 （CustomPropertyWrapper.md 和 CustomPropertyWrapperDemoView.swift）
+  - [x] 包装器创建
+  - [x] 属性访问控制
+  - [x] 验证和转换
+  - [x] 实际应用案例
 
 ### 3. Combine 框架
 
