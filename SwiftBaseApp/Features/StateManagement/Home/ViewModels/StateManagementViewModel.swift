@@ -89,8 +89,7 @@ class StateManagementViewModel: ObservableObject {
             case "@Published 属性发布":
                 PublishedDemoView()
             case "自定义属性包装器":
-                Text("自定义属性包装器 Demo - 待实现")
-                    .navigationTitle("自定义属性包装器")
+                CustomPropertyWrapperDemoView()
             case "视图内状态管理":
                 Text("视图内状态管理 Demo - 待实现")
                     .navigationTitle("视图内状态管理")
