@@ -47,6 +47,13 @@ struct HomeContentView: View {
             destination: AnyView(DocumentationHomeView())
         ),
         MainCategory(
+            title: "资源",
+            description: "开发资源和工具集合",
+            icon: "star.circle",
+            color: .yellow,
+            destination: AnyView(ResourceHomeView())
+        ),
+        MainCategory(
             title: "其他分类",
             description: "其他功能和工具",
             icon: "ellipsis.circle",
