@@ -11,144 +11,16 @@ import WebKit
 
 struct MarkdownParserView: View {
     @State private var markdownContent: String = ""
-    @State private var isLoading = true
-    @State private var errorMessage: String?
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    // 文件信息头部
-                    headerView
-                    
-                    Divider()
-                    
-                    // 内容展示区域
-                    contentView
-                }
-                .padding()
-            }
-            .navigationTitle("Markdown 解析器")
-            .navigationBarTitleDisplayMode(.large)
+        DownView(markdownContent: markdownContent)
             .onAppear {
                 loadMarkdownFile()
             }
-        }
-    }
-    
-    // MARK: - Header View
-    private var headerView: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image(systemName: "doc.text")
-                    .foregroundColor(.blue)
-                    .font(.title2)
-                
-                VStack(alignment: .leading) {
-                    Text("test.md")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                    
-                    Text("SwiftUI 数据流和状态管理学习清单")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
-                if isLoading {
-                    ProgressView()
-                        .scaleEffect(0.8)
-                }
-            }
-            
-            if let error = errorMessage {
-                Label(error, systemImage: "exclamationmark.triangle")
-                    .foregroundColor(.red)
-                    .font(.caption)
-            }
-        }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
-    }
-    
-    // MARK: - Content View
-    @ViewBuilder
-    private var contentView: some View {
-        if isLoading {
-            VStack(spacing: 16) {
-                ProgressView("正在加载 Markdown 文件...")
-                    .progressViewStyle(CircularProgressViewStyle())
-                
-                Text("解析文档内容中...")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            .frame(maxWidth: .infinity, minHeight: 200)
-        } else if let error = errorMessage {
-            errorView
-        } else {
-            markdownRenderView
-        }
-    }
-    
-    // MARK: - Error View
-    private var errorView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .font(.largeTitle)
-                .foregroundColor(.orange)
-            
-            Text("加载失败")
-                .font(.headline)
-            
-            Text(errorMessage ?? "未知错误")
-                .font(.body)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-            
-            Button("重新加载") {
-                loadMarkdownFile()
-            }
-            .buttonStyle(.bordered)
-        }
-        .frame(maxWidth: .infinity, minHeight: 200)
-    }
-    
-    // MARK: - Markdown Render View
-    private var markdownRenderView: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // 渲染选项
-            HStack {
-                Label("Down 库渲染", systemImage: "doc.richtext")
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                
-                Spacer()
-                
-                Text("\(markdownContent.count) 字符")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            
-            // 使用 Down 库渲染 Markdown
-            DownView(markdownContent: markdownContent)
-                .frame(minHeight: 400)
-                .background(Color(.systemBackground))
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color(.systemGray4), lineWidth: 1)
-                )
-        }
     }
     
     // MARK: - Load Markdown File
     private func loadMarkdownFile() {
-        isLoading = true
-        errorMessage = nil
-        
         // 异步加载文件内容
         DispatchQueue.global(qos: .userInitiated).async {
             do {
@@ -160,7 +32,6 @@ struct MarkdownParserView: View {
                     
                     DispatchQueue.main.async {
                         self.markdownContent = content
-                        self.isLoading = false
                     }
                 } else {
                     // 如果 Bundle 中找不到，尝试从项目路径读取
@@ -170,13 +41,11 @@ struct MarkdownParserView: View {
                     
                     DispatchQueue.main.async {
                         self.markdownContent = content
-                        self.isLoading = false
                     }
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.errorMessage = "文件读取失败: \(error.localizedDescription)"
-                    self.isLoading = false
+                    self.markdownContent = "# 文件加载失败\n\n错误信息: \(error.localizedDescription)"
                 }
             }
         }
