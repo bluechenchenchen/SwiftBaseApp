@@ -4,6 +4,8 @@
 
 SF Symbols 是苹果公司为 iOS、macOS、watchOS 和 tvOS 设计的图标库，提供了超过 5,000 个可配置的符号。这些图标与系统字体完美集成，支持多种重量、尺寸和颜色变体。
 
+https://developer.apple.com/sf-symbols/
+
 ## 基本使用
 
 ### SwiftUI 中使用

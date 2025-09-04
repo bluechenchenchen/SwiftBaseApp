@@ -30,8 +30,8 @@ struct SFSymbolsShowcaseView: View {
         // 图标网格
         symbolGrid
       }
-      .navigationTitle("SF Symbols 图标库")
-      .navigationBarTitleDisplayMode(.large)
+      .navigationTitle("SF Symbols 图标库（部分）")
+      .navigationBarTitleDisplayMode(.inline)
       .searchable(text: $searchText, prompt: "搜索图标...")
     }
   }
