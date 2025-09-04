@@ -114,8 +114,7 @@ class StateManagementViewModel: ObservableObject {
             case "Publisher 和 Subscriber":
                 PublisherSubscriberDemoView()
             case "基本操作符使用":
-                Text("基本操作符使用 Demo - 待实现")
-                    .navigationTitle("基本操作符使用")
+                CombineOperatorsDemoView()
             case "数据流转换":
                 Text("数据流转换 Demo - 待实现")
                     .navigationTitle("数据流转换")

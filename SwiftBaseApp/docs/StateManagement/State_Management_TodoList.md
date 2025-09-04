@@ -104,11 +104,11 @@
   - [x] 订阅者实现
   - [x] 数据流控制
   - [x] 生命周期管理
-- [ ] 基本操作符使用 （CombineOperators.md 和 CombineOperatorsDemoView.swift）
-  - [ ] 转换操作符
-  - [ ] 过滤操作符
-  - [ ] 组合操作符
-  - [ ] 错误处理操作符
+- [x] 基本操作符使用 （CombineOperators.md 和 CombineOperatorsDemoView.swift）
+  - [x] 转换操作符
+  - [x] 过滤操作符
+  - [x] 组合操作符
+  - [x] 错误处理操作符
 - [ ] 数据流转换 （DataFlowTransformation.md 和 DataFlowTransformationDemoView.swift）
   - [ ] 数据映射
   - [ ] 数据过滤
