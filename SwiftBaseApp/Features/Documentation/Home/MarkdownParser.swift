@@ -13,7 +13,7 @@ struct MarkdownParserView: View {
     @State private var markdownContent: String = ""
     
     var body: some View {
-        DownView(markdownContent: markdownContent)
+        MarkDownView(markdownContent: markdownContent)
             .onAppear {
                 loadMarkdownFile()
             }
@@ -53,7 +53,7 @@ struct MarkdownParserView: View {
 }
 
 // MARK: - Down View Wrapper
-struct DownView: UIViewRepresentable {
+struct MarkDownView: UIViewRepresentable {
     let markdownContent: String
     
     func makeUIView(context: Context) -> UIScrollView {
