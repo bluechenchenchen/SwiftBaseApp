@@ -15,8 +15,6 @@ struct DocumentationHomeView: View {
         // 顶部统计信息
         if !documentService.rootCategories.isEmpty {
           statisticsHeader
-          //            .padding(.horizontal)
-          // .padding(.top, 8)
         }
         
         // 内容区域
@@ -266,15 +264,15 @@ struct DocumentCategoryCard: View {
           .font(.title2)
           .foregroundColor(.white)
           .frame(width: 48, height: 48)
-          .background(
-            LinearGradient(
-              gradient: Gradient(colors: [Color(category.color), Color(category.color).opacity(0.7)]),
-              startPoint: .topLeading,
-              endPoint: .bottomTrailing
-            )
-          )
-          .clipShape(RoundedRectangle(cornerRadius: 12))
-          .shadow(color: Color(category.color).opacity(0.3), radius: 4, x: 0, y: 2)
+                     .background(
+             LinearGradient(
+               gradient: Gradient(colors: [categoryColor(category.color), categoryColor(category.color).opacity(0.7)]),
+               startPoint: .topLeading,
+               endPoint: .bottomTrailing
+             )
+           )
+           .clipShape(RoundedRectangle(cornerRadius: 12))
+           .shadow(color: categoryColor(category.color).opacity(0.3), radius: 4, x: 0, y: 2)
         
         // 分类信息
         VStack(alignment: .leading, spacing: 4) {
@@ -354,7 +352,7 @@ struct SubCategoryRow: View {
             .font(.body)
             .foregroundColor(.white)
             .frame(width: 32, height: 32)
-            .background(Color(category.color))
+            .background(categoryColor(category.color))
             .clipShape(RoundedRectangle(cornerRadius: 8))
           
           VStack(alignment: .leading, spacing: 2) {
@@ -632,9 +630,9 @@ struct ErrorView: View {
   
   var body: some View {
     VStack(spacing: 20) {
-      Image(systemName: "exclamationmark.triangle")
-        .font(.system(size: 50))
-        .foregroundColor(.orange)
+             Image(systemName: "exclamationmark.triangle")
+         .font(.system(size: 50))
+         .foregroundColor(Color.orange)
       
       Text("加载失败")
         .font(.title2)
@@ -659,9 +657,9 @@ extension DocumentationHomeView {
   private struct EmptyView: View {
     var body: some View {
       VStack(spacing: 20) {
-        Image(systemName: "doc.text")
-          .font(.system(size: 50))
-          .foregroundColor(.gray)
+                 Image(systemName: "doc.text")
+           .font(.system(size: 50))
+           .foregroundColor(Color.gray)
         
         Text("暂无文档")
           .font(.title2)
@@ -856,6 +854,40 @@ struct DownView: UIViewRepresentable {
   }
 }
 
+// MARK: - Helper Functions
+private func categoryColor(_ colorName: String) -> Color {
+    switch colorName.lowercased() {
+    case "blue":
+        return .blue
+    case "green":
+        return .green
+    case "red":
+        return .red
+    case "orange":
+        return .orange
+    case "purple":
+        return .purple
+    case "yellow":
+        return .yellow
+    case "pink":
+        return .pink
+    case "indigo":
+        return .indigo
+    case "teal":
+        return .teal
+    case "mint":
+        return .mint
+    case "cyan":
+        return .cyan
+    case "brown":
+        return .brown
+    case "gray", "grey":
+        return .gray
+    default:
+        return .blue // 默认颜色
+    }
+}
+
 #Preview {
-  DocumentationHomeView()
+   DocumentationHomeView()
 }
