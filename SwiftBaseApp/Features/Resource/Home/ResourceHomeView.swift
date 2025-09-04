@@ -138,6 +138,11 @@ class ResourceViewModel: ObservableObject {
         type: .design
       ),
       ResourceItem(
+        title: "系统字体样式库",
+        description: "SF Pro 字体族和排版样式展示",
+        type: .design
+      ),
+      ResourceItem(
         title: "设计规范",
         description: "iOS 设计指南和最佳实践",
         type: .design
@@ -196,6 +201,8 @@ class ResourceViewModel: ObservableObject {
       ResSFSymbolsShowcaseView()
     case "颜色调色板":
       ResColorPaletteView()
+    case "系统字体样式库":
+      ResFontLibraryView()
     case "设计规范":
       ResDesignGuideView()
     case "代码生成器":
@@ -229,6 +236,12 @@ struct ResColorPaletteView: View {
     Text("颜色调色板")
       .navigationTitle("颜色调色板")
       .navigationBarTitleDisplayMode(.large)
+  }
+}
+
+struct ResFontLibraryView: View {
+  var body: some View {
+    FontLibraryView()
   }
 }
 
