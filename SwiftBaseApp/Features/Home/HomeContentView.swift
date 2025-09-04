@@ -1,4 +1,5 @@
 import SwiftUI
+import Down
 
 struct HomeContentView: View {
     // MARK: - Properties
@@ -53,10 +54,12 @@ struct HomeContentView: View {
             destination: AnyView(OtherDemoView())
         )
     ]
-    
+
     // MARK: - Body
     var body: some View {
+      
         NavigationStack {
+            
             List(categories) { category in
                 NavigationLink(destination: category.destination) {
                     MainCategoryRow(category: category)

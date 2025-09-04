@@ -1,7 +1,7 @@
 <!--
  * @Author: blue
  * @Date: 2025-01-14 16:30:00
- * @FilePath: /SwiftBaseApp/SwiftBaseApp/docs/StateManagement/CombineOperators.md
+ * @FilePath: /SwiftBaseApp/SwiftBaseApp/docs/StateManagement/Combine/CombineOperators.md
 -->
 
 # Combine 基本操作符使用
