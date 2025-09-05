@@ -233,9 +233,7 @@ struct ResSFSymbolsShowcaseView: View {
 
 struct ResColorPaletteView: View {
   var body: some View {
-    Text("颜色调色板")
-      .navigationTitle("颜色调色板")
-      .navigationBarTitleDisplayMode(.large)
+    ColorPaletteView()
   }
 }
 

@@ -219,11 +219,12 @@ struct SymbolCard: View {
         copyToClipboard()
       }
     )
-    .alert("已复制", isPresented: $showCopiedAlert) {
-      Button("确定") { }
-    } message: {
-      Text("图标名称 '\(symbol)' 已复制到剪贴板")
-    }
+//    .alert("已复制", isPresented: $showCopiedAlert) {
+//      Button("确定") { }
+//    }
+//    message: {
+//      Text("图标名称 '\(symbol)' 已复制到剪贴板")
+//    }
   }
   
   private func copyToClipboard() {
